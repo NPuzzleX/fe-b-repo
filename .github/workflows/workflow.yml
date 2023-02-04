@@ -15,7 +15,7 @@ jobs:
     - name: Inject BASE_URL secret
       run: sed -i 's|DEPLOY_BASE_URL_VAL|\"'${{ secrets.BASE_URL }}'\"|' $GITHUB_WORKSPACE/webpack.config.js
     - name: Update webpack deployment file process.env.BASE_URL
-      run: sed -i 's|DEPLOY_BASE_URL|\"'${{ process.env.BASE_URL }}'\"|' $GITHUB_WORKSPACE/webpack.config.js 
+      run: sed -i 's|DEPLOY_BASE_URL|process.env.BASE_URL|' $GITHUB_WORKSPACE/webpack.config.js 
     - name: Build container image
       run: docker build -t registry.digitalocean.com/npuzzle/main:fe-b-repo-$(echo $GITHUB_SHA | head -c7) .
     - name: Log in to DigitalOcean Container Registry with short-lived credentials
