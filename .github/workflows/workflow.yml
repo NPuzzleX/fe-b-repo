@@ -13,7 +13,7 @@ jobs:
       with:
         token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
     - name: Inject BASE_URL secret
-      run: sed -i 's|DEPLOY_BASE_URL_VAL|\"'${{ secrets.BASE_URL }}'\"|' $GITHUB_WORKSPACE/webpack.config.js
+      run: sed -i 's|DEPLOY_BASE_URL_VAL|'${{ secrets.BASE_URL }}'|' $GITHUB_WORKSPACE/webpack.config.js
     - name: Update webpack deployment file process.env.BASE_URL
       run: sed -i 's|DEPLOY_BASE_URL|process.env.BASE_URL|' $GITHUB_WORKSPACE/webpack.config.js 
     - name: Build container image
