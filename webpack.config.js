@@ -10,7 +10,7 @@ const common = (compileType, puzzleName) => merge([
     new DefinePlugin({
       "process.env.compileType": JSON.stringify(compileType),
       "process.env.puzzleName": JSON.stringify(puzzleName),
-      "DEPLOY_BASE_URL": "DEPLOY_BASE_URL_VAL" 
+      "DEPLOY_BASE_URL": JSON.stringify("DEPLOY_BASE_URL_VAL")
     })]
   },
   parts.page({ title: 'Test' }),
