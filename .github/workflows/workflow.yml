@@ -17,13 +17,13 @@ jobs:
     - name: Update webpack deployment file process.env.BASE_URL
       run: sed -i 's|DEPLOY_BASE_URL|process.env.BASE_URL|' $GITHUB_WORKSPACE/webpack.config.js 
     - name: Build container image
-      run: docker build -t registry.digitalocean.com/npuzzle/main:fe-b-repo-$(echo $GITHUB_SHA | head -c7) .
+      run: docker build -t registry.digitalocean.com/mw-server/main:npuzzle-brdrepo-$(echo $GITHUB_SHA | head -c7) .
     - name: Log in to DigitalOcean Container Registry with short-lived credentials
       run: doctl registry login --expiry-seconds 1200
     - name: Push image to DigitalOcean Container Registry
-      run: docker push registry.digitalocean.com/npuzzle/main:fe-b-repo-$(echo $GITHUB_SHA | head -c7)
+      run: docker push registry.digitalocean.com/mw-server/main:npuzzle-brdrepo-$(echo $GITHUB_SHA | head -c7)
     - name: Update deployment file
-      run: TAG=$(echo $GITHUB_SHA | head -c7) && sed -i 's|<IMAGE>|registry.digitalocean.com/npuzzle/main:fe-b-repo-'${TAG}'|' $GITHUB_WORKSPACE/k8s/auto-deployment.yml
+      run: TAG=$(echo $GITHUB_SHA | head -c7) && sed -i 's|<IMAGE>|registry.digitalocean.com/mw-server/main:npuzzle-brdrepo-'${TAG}'|' $GITHUB_WORKSPACE/k8s/auto-deployment.yml
     - name: Save DigitalOcean kubeconfig with short-lived credentials
       run: doctl kubernetes cluster kubeconfig save --expiry-seconds 600 ${{ secrets.DO_CLUSTER_NAME }}
     - name: Deploy to DigitalOcean Kubernetes
