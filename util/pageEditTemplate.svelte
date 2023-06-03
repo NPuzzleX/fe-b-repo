@@ -129,6 +129,7 @@
     let thumbnailTarget: HTMLDivElement;
     const maxThumbnailSize: number = 400;
     let checking: boolean = false;
+    
     async function check() {
       if (!checking) {
         checking = true;
