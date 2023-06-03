@@ -7,8 +7,8 @@
     export let squarePuzzle: boolean;
     export let mainBoardComponent: any;
     export let hintString: string = "";
-    let boardController: any;
 
+    let boardController: any;
     let mainDiv: HTMLDivElement;
     let hidden: boolean = false;
   
